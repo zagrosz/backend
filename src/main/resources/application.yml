@@ -1,5 +1,5 @@
 server:
-  port: 8000
+  port: 7000
 spring:
   datasource:
       url: jdbc:h2:file:~/zagrosz_db
@@ -11,5 +11,5 @@ spring:
     console:
       enabled: true
       path: /h2-console
-liquibase:
-  change-log: classpath:database/changeLog.xml
+  liquibase:
+    change-log: classpath:database/changelog.xml

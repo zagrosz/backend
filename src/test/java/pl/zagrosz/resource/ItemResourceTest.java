@@ -35,4 +35,16 @@ public class ItemResourceTest {
     assertThat((List<Item>) response.getBody()).containsExactly(firstItem, secondItem);
     verify(mockedItemService, times(1)).getAll();
   }
+
+  @Test
+  public void testCreate() {
+    Item item = new Item(null, "testItem");
+    when(mockedItemService.create(item)).thenReturn(1L);
+
+    ResponseEntity response = itemResource.create(item);
+
+    assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+    assertThat((Long) response.getBody()).isEqualTo(1L);
+    verify(mockedItemService, times(1)).create(item);
+  }
 }

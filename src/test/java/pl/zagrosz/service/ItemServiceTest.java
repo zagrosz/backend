@@ -32,4 +32,16 @@ public class ItemServiceTest {
     assertThat(allItemsList).containsExactly(firstItem, secondItem);
     verify(mockedItemRepository, times(1)).findAll();
   }
+
+  @Test
+  public void testCreate() {
+    Item itemToSave = new Item(null, "testItem");
+    Item itemSaved = new Item(1L, "testItem");
+    when(mockedItemRepository.save(itemToSave)).thenReturn(itemSaved);
+
+    Long savedItemId = itemService.create(itemToSave);
+
+    assertThat(savedItemId).isEqualTo(1L);
+    verify(mockedItemRepository, times(1)).save(itemToSave);
+  }
 }

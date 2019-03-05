@@ -17,7 +17,12 @@ public class ItemService {
   }
 
   public List<Item> getAll() {
-    return this.itemRepository.findAll();
+    return itemRepository.findAll();
   }
 
+  public Long create(Item item) {
+    Item savedItem = itemRepository.save(item);
+
+    return savedItem.getId();
+  }
 }
